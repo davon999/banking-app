@@ -48,5 +48,18 @@ public class Account {
     public AccountStatus getStatus() {
         return status;
     }
+
+    public void deposit(BigDecimal value) {
+        if (this.status != AccountStatus.ACTIVE) {
+            throw new IllegalStateException("Your account is currently: " + this.status);
+        }
+        if (value == null) {
+            throw new IllegalArgumentException("Deposit amount must not be null");
+        }
+        if (value.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("You cannot deposit " + value);
+        }
+        this.balance = this.balance.add(value);
+    }
 }
 
