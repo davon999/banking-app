@@ -24,4 +24,29 @@ public class Account {
         this.balance = BigDecimal.ZERO;
         this.status = AccountStatus.ACTIVE;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getIban() {
+        return iban;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public AccountStatus getStatus() {
+        return status;
+    }
 }
+
