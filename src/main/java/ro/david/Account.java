@@ -1,5 +1,7 @@
 package ro.david;
 
+import ro.david.exception.InsufficientFundsException;
+
 import java.math.BigDecimal;
 
 public class Account {
@@ -71,7 +73,7 @@ public class Account {
             throw new IllegalArgumentException("Withdrawal amount must not be null");
         }
         if (this.balance.compareTo(value) < 0) {
-            throw new IllegalArgumentException("Insufficient funds");
+            throw new InsufficientFundsException("Insufficient funds: requested " + value + ", available " + this.balance);
         }
         if (value.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("You cannot withdraw " + value);
