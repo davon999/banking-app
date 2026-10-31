@@ -61,5 +61,22 @@ public class Account {
         }
         this.balance = this.balance.add(value);
     }
+
+    public void withdraw(BigDecimal value) {
+        if (this.status != AccountStatus.ACTIVE) {
+            throw new IllegalStateException("Your account is currently: " + this.status);
+        }
+
+        if (value == null) {
+            throw new IllegalArgumentException("Withdrawal amount must not be null");
+        }
+        if (this.balance.compareTo(value) < 0) {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+        if (value.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("You cannot withdraw " + value);
+        }
+        this.balance = this.balance.subtract(value);
+    }
 }
 
